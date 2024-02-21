@@ -2,29 +2,55 @@
   import { storeToRefs } from 'pinia'
   import { useStore } from '@/stores/store'
   import { IMAGE_PRODUCTS_URL } from '@/constants/api'
+  import { onMounted, watch } from 'vue';
+  import Card from '@/components/Card.vue'
 
+  onMounted(() => {
+    store.getProducts()   
+  })
+  
   const store = useStore()
-
-  store.getProducts()
-
   const { products } = storeToRefs(store) 
   
+  const onChangeSortSelect = (event) => {
+    store.filters.sort = event.target.value
+  }
+
+  const onChangeSearchInput = (event) => {
+    store.filters.search = event.target.value
+  }
+
+  watch(store.filters, () => {
+	  store.getProducts()
+  })
+
 </script>
 
 <template>
 <!--   <pre>
     {{ products }}
   </pre> -->
+  <div>
+    <select @change="onChangeSortSelect">
+      <option value="name">name</option>
+      <option value="price">price</option>
+    </select> 
+    
+    <input @input="onChangeSearchInput" type="text" placeholder="Filter by name">
+  </div>
+
+
   <div class="catalog">
     <div
     v-for="product in products"
     :key="product._id"
-    class="card"
     >
-    <img :src="`${IMAGE_PRODUCTS_URL}${product.image.path}`" :alt="product.image.title">
-    <div>{{ product.id }}</div>
-    <div>{{ product.name }}</div>
-    <div>{{ product.price }}</div>
+      <Card
+        :id="product.id"
+        :name="product.name"
+        :price="product.price"
+        :image="`${IMAGE_PRODUCTS_URL}${product.image.path}`"
+      />
 
     </div>
   </div>
@@ -36,11 +62,5 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  .card {
-    background-color: beige;
-    img {
-      max-width: 100px;
-    }
-  }
 }
 </style>
