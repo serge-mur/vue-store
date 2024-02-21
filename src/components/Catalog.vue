@@ -5,12 +5,10 @@
   import { onMounted, watch } from 'vue';
   import Card from '@/components/Card.vue'
 
-  onMounted(() => {
-    store.getProducts()   
-  })
-  
   const store = useStore()
-  const { products } = storeToRefs(store) 
+  const { products } = storeToRefs(store)
+
+  onMounted(store.getProducts)
   
   const onChangeSortSelect = (event) => {
     store.filters.sort = event.target.value
@@ -41,18 +39,16 @@
 
 
   <div class="catalog">
-    <div
-    v-for="product in products"
-    :key="product._id"
-    >
+
       <Card
+        v-for="product in products"
+        :key="product.id"
         :id="product.id"
         :name="product.name"
         :price="product.price"
         :image="`${IMAGE_PRODUCTS_URL}${product.image.path}`"
       />
 
-    </div>
   </div>
 
 </template>
