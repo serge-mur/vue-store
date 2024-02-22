@@ -1,22 +1,25 @@
 <script setup>
   import { storeToRefs } from 'pinia'
   import { useStore } from '@/stores/store'
+  import debounce from 'lodash.debounce'
   import { IMAGE_PRODUCTS_URL } from '@/constants/api'
-  import { onMounted, watch } from 'vue';
+  import { onMounted, watch } from 'vue'
   import Card from '@/components/Card.vue'
 
   const store = useStore()
   const { products } = storeToRefs(store)
 
-  onMounted(store.getProducts)
+  onMounted(() => {
+    store.getProducts()
+  })
   
   const onChangeSortSelect = (event) => {
     store.filters.sort = event.target.value
   }
 
-  const onChangeSearchInput = (event) => {
+  const onChangeSearchInput = debounce((event) => {
     store.filters.search = event.target.value
-  }
+  }, 1000)
 
   watch(store.filters, () => {
 	  store.getProducts()
