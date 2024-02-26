@@ -2,7 +2,7 @@
   import { useStore } from '@/stores/store'
 
   defineProps({
-    id: Number,
+    id: String,
     name: String,
     image: String,
     price: Number
@@ -16,7 +16,10 @@
   <div class="card">
     <img :src="image">
     <div>{{ id }}</div>
-    <div>{{ name }}</div>
+    <RouterLink :to="{name: 'detail', params: {id: id}}">
+      {{ name }}
+    </RouterLink>
+    
     <div>{{ price }}</div> 
     <button @click="store.addToCart(id)">Buy</button>
   </div>

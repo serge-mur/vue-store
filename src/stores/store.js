@@ -19,7 +19,7 @@ export const useStore = defineStore('store', () => {
   })
 
   const addToCart = (id) => {
-    const item = products.value.find(el => el.id == id)
+    const item = products.value.find(el => el._id == id)
     cart.value.push(item)
   }
 
@@ -40,6 +40,17 @@ export const useStore = defineStore('store', () => {
         console.log(error)
     }
   }
+  
+  const product = ref({})
+  const getProduct = async(id) => {
+    try {
+      const { data } = await axios.get(`${BASE_URL}api/content/item/products/${id}`)
+      product.value = data
+      product.value.imagePath = product.value.image.path // pzdc!!!
+    } catch(error) {
+        console.log(error)
+    } finally {}
+  }
 
-  return { products, filters, getProducts, cart, addToCart, delFromCart, totalCost } 
+  return { products, filters, getProducts, cart, addToCart, delFromCart, totalCost, getProduct, product } 
 })

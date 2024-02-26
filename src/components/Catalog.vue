@@ -9,9 +9,9 @@
   const store = useStore()
   const { products } = storeToRefs(store)
 
-  onMounted(() => {
+  // onMounted(() => {
     store.getProducts()
-  })
+  // })
   
   const onChangeSortSelect = (event) => {
     store.filters.sort = event.target.value
@@ -45,8 +45,8 @@
 
       <Card
         v-for="product in products"
-        :key="product.id"
-        :id="product.id"
+        :key="product._id"
+        :id="product._id"
         :name="product.name"
         :price="product.price"
         :image="`${IMAGE_PRODUCTS_URL}${product.image.path}`"
