@@ -7,7 +7,8 @@
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink> |
-        <RouterLink to="/catalog">Catalog</RouterLink>
+        <RouterLink to="/catalog">Catalog</RouterLink> |
+        <RouterLink to="/cart">Cart</RouterLink> 
       </nav>
     </div>
   </header>
