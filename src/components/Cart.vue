@@ -1,5 +1,4 @@
 <script setup>
-  import { ref } from 'vue'
   import { useStore } from '@/stores/store'
   const store = useStore()
   import CardInCart from '@/components/CardInCart.vue'
