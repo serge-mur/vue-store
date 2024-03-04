@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <h1>Cart Page</h1>
-  <Cart />
-</template>
 
-<style scoped>
-</style>
+  <h1 class="page-title">Cart Page</h1>
+  
+  <Cart />
+
+</template>

@@ -28,16 +28,15 @@
 </script>
 
 <template>
-<!--   <pre>
-    {{ products }}
-  </pre> -->
-  <div>
-    <select @change="onChangeSortSelect">
+
+  <div class="input-control">
+    
+    <select class="input-control__sort" @change="onChangeSortSelect">
       <option value="name">name</option>
       <option value="price">price</option>
     </select> 
     
-    <input @input="onChangeSearchInput" type="text" placeholder="Filter by name">
+    <input class="input-control__filter" @input="onChangeSearchInput" type="text" placeholder="Filter by name">
   </div>
 
 
@@ -56,10 +55,17 @@
 
 </template>
 
-<style lang="scss" scoped>
-.catalog {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
+<style scoped>
+  .input-control {
+    @apply flex gap-4 py-4
+  }
+  .input-control__sort {
+    @apply w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+  }
+  .input-control__filter {
+    @apply w-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+  }
+  .catalog {
+    @apply grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4
+  }
 </style>

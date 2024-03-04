@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <main>
-    <h1>Main Page</h1>
-  </main>
+
+  <h1 class="page-title">Main Page</h1>
+
 </template>

@@ -12,10 +12,8 @@
 
 <template>
 
-  <h1>Product Page</h1>
+  <h1 class="page-title">Product Page</h1>
+
   <CardDetail :id="route.params.id" />
 
 </template>
-
-<style scoped>
-</style>
