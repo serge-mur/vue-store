@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { ref, reactive, computed } from 'vue'
 import { BASE_URL } from '@/constants/api'
+import { useRouter } from 'vue-router'
 
 export const useStore = defineStore('store', () => {
   const products = ref([])
@@ -29,13 +30,14 @@ export const useStore = defineStore('store', () => {
     cart.value.splice(cartId, 1)
   }
 
+  const complete = ref(false)
+  const router = useRouter()
+
   const orderForm = ref({
     name: '',
     contacts: ''
   })
   
-  const orderComplete = ref(false)
-
   const order = async () => {
 
     const orderData = {
@@ -50,13 +52,15 @@ export const useStore = defineStore('store', () => {
       await axios.post(`${BASE_URL}api/content/item/orders`, {
         data: orderData
       })
+      complete.value = true
+      setTimeout(() => {
+        cart.value.length = 0
+        complete.value = false
+        router.push('/catalog')
+      }, 5000);
     } catch (error) {
       console.log(error)
-    } finally {
-      cart.value.length = 0
-      orderComplete.value = true      
-    }
-
+    } finally {}
   }
 
   const getProducts = async () => {
@@ -89,6 +93,6 @@ export const useStore = defineStore('store', () => {
     cart, addToCart, delFromCart,
     totalCost, countProductsCart,
     getProduct, product,
-    orderForm, order, orderComplete
+    orderForm, order, complete
   }
 })
