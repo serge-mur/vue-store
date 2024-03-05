@@ -30,7 +30,7 @@
 <template>
 
   <div class="input-control">
-    
+
     <select class="input-control__sort" @change="onChangeSortSelect">
       <option value="name">name</option>
       <option value="price">price</option>
@@ -60,10 +60,10 @@
     @apply flex gap-4 py-4
   }
   .input-control__sort {
-    @apply w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+    @apply w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5
   }
   .input-control__filter {
-    @apply w-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+    @apply w-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5
   }
   .catalog {
     @apply grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4

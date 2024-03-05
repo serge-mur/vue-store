@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 #app {
-  @apply container mx-auto flex flex-col min-h-screen
+  @apply container mx-auto flex flex-col min-h-screen px-4
 }
 .page-title {
-  @apply text-2xl pb-4
+  @apply text-2xl py-4
 }
